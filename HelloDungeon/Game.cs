@@ -8,27 +8,18 @@ namespace HelloDungeon
 {
     class Game
     {
-        //Stats Menu
-        void PrintStats(string name, float health, float intel, float strength, float charisma, float luck, float stamina, float percept)
-        {
-            while()
-            {
-                Console.WriteLine("Courior Name = " + name);
-                Console.WriteLine("Health = " + health);
-                Console.WriteLine("Smarts = " + intel);
-                Console.WriteLine("Strength = " + strength);
-                Console.WriteLine("Stamina = " + stamina);
-                Console.WriteLine("Charisma = " + charisma);
-                Console.WriteLine("Luck = " + luck);
-                Console.WriteLine("Perception = " + percept);
-            }
-            
-        }
-        
+        //Starting Strings
+        string DogName = "Rex";
+        string PlayerName = "";
+        string PlayerChoice = "";
+        int CurrentScene = 0;
+        bool GameIsOn = false;
+
+        //DisplayMenu
         string DisplayMenu(string prompt, string option1, string option2, string option3, string option4, string option5, string option6)
         {
             string PlayerChoice = "";
-            
+
             while (PlayerChoice != "1" && PlayerChoice != "2" && PlayerChoice != "3" && PlayerChoice != "4" && PlayerChoice != "5" && PlayerChoice != "6")
             {
                 //Display Prompt
@@ -89,185 +80,246 @@ namespace HelloDungeon
             }
             return PlayerChoice;
         }
-
-
-        public void Run()
+        //Main Menu
+        void DisplayMainMenu()
         {
-          
-            
-
-            //Starting Strings
-
-            string DogName = "Rex";
-            string PlayerName = "";
-            string PlayerChoice = "";
-            bool IsAlive = true;
-            float IntelPoints = 10.00f;
-            float StrengthPoints = 10.00f;
-            float CharismaPoints = 10.00f;
-            float StaminaPoints = 10.00f;
-            float LuckPoints = 10.00f;
-            float PerceptionPoints = 10.00f;
-            float HealthPoints = 32.76f * 2;
-            int AreaNumber = 0;
-            bool GameIsOn = true;
-            
 
 
+            PlayerChoice = "";
+            Console.Clear();
+            Console.ReadKey();
+            Console.WriteLine("Tales of a Well Traveled Courior");
+            Console.ReadLine();
+            Console.WriteLine("'What is your name?'");
+            Console.Write(">");
 
-            //Game Start
-            while (GameIsOn == true)
+            //Name
+            string firstname = Console.ReadLine();
+            string lastname = Console.ReadLine();
+            PlayerName = firstname + lastname;
+
+            //First Player Choice
+            while(PlayerChoice != "1" && PlayerChoice != "2"  && PlayerChoice != "3")
             {
-                
-
-                while (PlayerChoice != "1")
+                PlayerChoice = DisplayMenu("'Your name is " + PlayerName + " correct?'", "Yes", "No", "End Game", "", "", "");
+                Console.Clear();
+                if (PlayerChoice == "2")
                 {
-                    Console.ReadKey();
-                    Console.WriteLine("Tales of a Well Traveled Courior");
-                    Console.ReadLine();
-                    Console.WriteLine("'What is your name?'");
-                    Console.Write(">");
+                    Console.ReadKey(true);
+                    Console.WriteLine("'I am sorry please can you repeat it?'");
+                    Console.ReadKey(true);
 
-                    //Name
-                    string firstname = Console.ReadLine();
-                    string lastname = Console.ReadLine();
-                    PlayerName = firstname + lastname;
-
-                    //First Player Choice
-                    PlayerChoice = DisplayMenu("'Your name is " + PlayerName + " correct?'", "Yes", "No", "", "", "", "");
-                    PlayerChoice = Console.ReadLine();
+                }
+                else if (PlayerChoice == "1")
+                {
+                    Console.WriteLine("'Great now let's begin'");
+                    Console.ReadKey(true);
                     Console.Clear();
-                    if (PlayerChoice == "2")
-                    {
-                        Console.WriteLine("'I am sorry please can you repeat it?'");
+                    CurrentScene = 1;
+                }
+                else if (PlayerChoice == "3")
+                {
+                    ShowGameOverScreen();
+                }
+                else
+                {
+                    Console.WriteLine("ERROR ERROR INVALID INPUT DETECTED TRY AGAIN!!!");
+                    Console.ReadKey(true);
 
-                    }
-                    else if (PlayerChoice == "1")
-                    {
-                        Console.WriteLine("'Great now let's begin'");
-
-                    }
-                    else
-                    {
-                        Console.WriteLine("ERROR ERROR INVALID INPUT DETECTED TRY AGAIN!!!");
-                        Console.ReadKey(true);
-
-                    }
                 }
 
 
-                //String Code
 
+
+            }
+        }
+        //This Is Scene Number Two
+        void DisplaySceneTwo()
+        {
+            //TimeSkip
+            PlayerChoice = "";
+            while (PlayerChoice != "1" && PlayerChoice != "2" && PlayerChoice != "3")
+            {
+                PlayerChoice = "";
+                Console.ReadLine();
+                Console.Clear();
+                Console.ReadLine();
+                Console.WriteLine("//                                   One Week Later                                 //");
+                Console.ReadLine();
+                Console.Clear();
+                Console.WriteLine("As you enter thru the imposing metal gate that creates a protective shell of the city.");
+                Console.WriteLine("You have finally arrived at your first point of delivery... the city of Lafayette.");
+                Console.WriteLine("The instructions on the parcel says to bring the package to Old Ann's Church");
+                Console.WriteLine("but no other directions are stated... Strange.");
+                Console.ReadLine();
+
+                //Where To Move
+                PlayerChoice = DisplayMenu("What will you do now to find the location?", "Ask a local shopkeeper where the church is.", "Wander around", "End Game", "", "", "");
+                if (PlayerChoice == "1")
+                {
+                    Console.WriteLine("You walk into a charming little general store called 'Tina's Terrific Trinkets'.");
+                    Console.WriteLine("At the counter you see a older lady whom you assume is the stores namesake.");
+                    Console.WriteLine("You ask her where Old Ann's Church is.");
+                    Console.WriteLine("She gives you some slightly confusing directions but you eventually get what she tells you and you leave the store");
+                    Console.WriteLine("and start toward the church.");
+                    //Ending Text
+                    Console.ReadLine();
+                    Console.WriteLine("You are standing infront of a(n) imposing cathedral with a feeling of dread in your stomach.");
+                    Console.WriteLine("A nun walks up to you and asks for the package.");
+                    Console.WriteLine("You hand it to her as she hands you your money.");
+                    Console.ReadLine();
+                    Console.Clear();
+
+                    Console.ReadLine();
+                    Console.WriteLine("The End");
+                    Console.ReadKey(true);
+                }
+                else if (PlayerChoice == "2")
+                {
+                    Console.WriteLine("You wander for almost a full day before you finally find the church.");
+                    
+                    //Ending Text
+                    Console.ReadLine();
+                    Console.WriteLine("You are standing infront of a(n) imposing cathedral with a feeling of dread in your stomach.");
+                    Console.WriteLine("A nun walks up to you and asks for the package.");
+                    Console.WriteLine("You hand it to her as she hands you your money.");
+                    Console.ReadLine();
+                    Console.Clear();
+
+                    Console.ReadLine();
+                    Console.WriteLine("The End");
+                    Console.ReadKey(true);
+                }
+                else if (PlayerChoice == "3")
+                {
+                    ShowGameOverScreen();
+                }
+                CurrentScene = 3;
+
+
+            }
+
+        }
+            
+        //Game Over
+        void ShowGameOverScreen()
+        {
+            PlayerChoice = "";
+            while(PlayerChoice != "1" && PlayerChoice != "2")
+            {
+                CurrentScene = 0;
+                PlayerChoice = DisplayMenu("Restart?", " Yes", " No", "", "", "", "");
+
+                Console.ReadLine();
+                if (PlayerChoice == "1")
+                {
+                    Console.ReadLine();
+                    Console.WriteLine("Well let's do it one more time.");
+                    Console.ReadLine();
+                    CurrentScene = 0;
+                }
+                else if (PlayerChoice == "2")
+                {
+                    Console.WriteLine("Goodbye");
+                    GameIsOn = true;
+                }
+                CurrentScene = 0;
+            }
+
+            
+
+
+
+        }
+        //Show First Scene
+        void DisplaySceneOne()
+        {
+
+
+
+            //Conversation Start
+            PlayerChoice = "";
+            while (PlayerChoice != "1" && PlayerChoice != "2" && PlayerChoice != "3" && PlayerChoice != "4" && PlayerChoice != "5" && PlayerChoice != "6")
+            {
+                //String Code
+                PlayerChoice = "";
                 PlayerChoice = Console.ReadLine();
 
                 //Worldbuilding
-                
                 Console.WriteLine("'Welcome to the Lone Star Courior Service " + PlayerName + " glad to have you aboard.'");
                 Console.ReadLine();
                 Console.WriteLine("You dust the sands of the desert from your stiched up and raggedy old pants.");
                 Console.WriteLine("Hitching a ride with a traveling caravan heading towards New Opealousas.");
-                Console.WriteLine("You have been tasked by your employer to deliver a series of packages too");
-                Console.WriteLine("various areas across the southwest wasteland.");
-                Console.WriteLine("You are to be paid on delivery. Your first delivery is in the town Lafayette");
+                Console.WriteLine("You have been tasked by your employer to deliver a package too");
+                Console.WriteLine("an area in the southwest wasteland.");
+                Console.WriteLine("You are to be paid on delivery. Your delivery is in the town Lafayette");
                 Console.WriteLine("The caravan is stopping for a moment to refuel.");
                 Console.ReadLine();
 
-                    //First Action
-                    PlayerChoice = DisplayMenu("To pass the time you...", "Talk with a caravan hand", "Barter with the dog trader", "Take a nap", "Sleep", "Wait around", "Check stats");
-
-                //while (PlayerChoice != "1" && PlayerChoice != "2" && PlayerChoice != "3" && PlayerChoice != "4" && PlayerChoice != "5" && PlayerChoice != "6")
-                //{
-                //    //Story Start
-                    
-                //    //Console.ReadLine();
-                //    //Console.WriteLine("1. Talk with a caravan hand");
-                //    //Console.WriteLine("2. Barter with the dog trader");
-                //    //Console.WriteLine("3. Take a nap");
-                //    //Console.WriteLine("4. Sleep");
-                //    //Console.WriteLine("5. Wait around");
-                //    //Console.WriteLine("6. Check stats");
-                    
-                    //Conversation Start
-                    if (PlayerChoice == "1")
-                    {
-                        Console.WriteLine("You learn about a local legend about a strange armored devil.");
-
-                    }
-                    else if (PlayerChoice == "2")
-                    {
-                        Console.WriteLine("You walk over to the hunched over trader and buy a Cyberdog named Rex for $1,000.");
-
-                    }
-                    else if (PlayerChoice == "3" && PlayerName == "Link")
-                    {
-                        Console.WriteLine("You lay down in one of the empty carts and doze off for longer then you thought.");
-
-                    }
-                    else if (PlayerChoice == "3" || PlayerChoice == "4")
-                    {
-                        Console.WriteLine("You lay down in one of the empty carts and doze off.");
-
-                    }
-                    else if (PlayerChoice == "5" || PlayerChoice == "Wait")
-                    {
-                        Console.WriteLine("You wait a few hours untill the caravan starts moving again.");
-
-                    }
-                    else if (PlayerChoice == "6")
-                    {
-                        PrintStats(PlayerName, HealthPoints, IntelPoints, StrengthPoints, CharismaPoints, LuckPoints, StaminaPoints, PerceptionPoints);
-                    }
-                    Console.ReadLine();
+                //First Action
+                PlayerChoice = DisplayMenu("To pass the time you...", "Talk with a caravan hand", "Barter with the dog trader", "Take a nap", "Sleep", "End Game", "Leave and return to main menu");
+                Console.ReadKey(true);
+                if (PlayerChoice == "1")
+                {
                     Console.Clear();
+                    Console.WriteLine("You learn a local legend about a strange armored devil.");
+                    CurrentScene = 2;
 
-                    //TimeSkip
-
-                    Console.ReadLine();
-                    Console.WriteLine("//                                   One Week Later                                 //");
-                    Console.ReadLine();
+                }
+                else if (PlayerChoice == "2")
+                {
                     Console.Clear();
-                    Console.WriteLine("As you enter thru the imposing metal gate that creates a protective shell of the city.");
-                    Console.WriteLine("You have finally arrived at your first point of delivery... the city of Lafayette.");
-                    Console.WriteLine("The instructions on the parcel says to bring the package to Old Ann's Church");
-                    Console.WriteLine(" but no other directions are stated... Strange.");
-                    
+                    Console.WriteLine("You walk over to the hunched over trader and buy a Cyberdog named " + DogName + " for $1,000.");
+                    Console.ReadKey(true);
+                    Console.Clear();
+                    PlayerChoice = "";
 
+                }
+                else if (PlayerChoice == "3" && PlayerName == "Link")
+                {
+                    Console.Clear();
+                    Console.WriteLine("You lay down in one of the empty carts and doze off for longer then you thought.");
+                    CurrentScene = 2;
+                }
+                else if (PlayerChoice == "3" || PlayerChoice == "4")
+                {
+                    Console.Clear();
+                    Console.WriteLine("You lay down in one of the empty carts and doze off.");
+                    CurrentScene = 2;
+                }
+                else if (PlayerChoice == "5" || PlayerChoice == "End")
+                {
+                    ShowGameOverScreen();
+                }
+                else if (PlayerChoice == "6")
+                {
+                    CurrentScene = 0;
+                }
 
+            }
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    //PlayerChoice = DisplayMenu("Restart?", " Yes", " No", "", "", "", "");
-
-                    //    if (PlayerChoice == "1")
-                    //    {
-                    //        GameIsOn = true;
-                    //    }
-                    //    else if (PlayerChoice == "2");
-                    //    {
-                    //        Console.WriteLine("Goodbye");
-                    //        GameIsOn = false;
-                    //    }
-
+        public void Run()
+        {
+            //Game Start
+            while (GameIsOn == false)
+            {
+                if (CurrentScene == 0)
+                {
+                    DisplayMainMenu();
+                }
+                else if (CurrentScene == 1)
+                {
+                    DisplaySceneOne();
+                }
+                else if (CurrentScene == 2)
+                {
+                    DisplaySceneTwo();
+                }
+                else if (CurrentScene == 3)
+                {
+                    ShowGameOverScreen();
+                }
             }
         }
     }
