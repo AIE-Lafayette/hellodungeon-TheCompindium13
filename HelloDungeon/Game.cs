@@ -88,7 +88,7 @@ namespace HelloDungeon
             PlayerChoice = "";
             Console.Clear();
             Console.ReadKey();
-            Console.WriteLine("Tales of a Well Traveled Courior");
+            Console.WriteLine("Tales of a Well Traveled Courier");
             Console.ReadLine();
             Console.WriteLine("'What is your name?'");
             Console.Write(">");
@@ -246,7 +246,7 @@ namespace HelloDungeon
                 PlayerChoice = Console.ReadLine();
 
                 //Worldbuilding
-                Console.WriteLine("'Welcome to the Lone Star Courior Service " + PlayerName + " glad to have you aboard.'");
+                Console.WriteLine("'Welcome to the Lone Star Courier Service " + PlayerName + " glad to have you aboard.'");
                 Console.ReadLine();
                 Console.WriteLine("You dust the sands of the desert from your stiched up and raggedy old pants.");
                 Console.WriteLine("Hitching a ride with a traveling caravan heading towards New Opealousas.");
