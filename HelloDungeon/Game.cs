@@ -13,7 +13,7 @@ namespace HelloDungeon
         string PlayerName = "";
         string PlayerChoice = "";
         int CurrentScene = 0;
-        bool GameIsOn = false;
+        bool GameOver = false;
 
         //DisplayMenu
         string DisplayMenu(string prompt, string option1, string option2, string option3, string option4, string option5, string option6)
@@ -56,15 +56,15 @@ namespace HelloDungeon
                     {
                         continue;
                     }
-                    if (PlayerChoice == "4" && option4 != "")
+                    else if (PlayerChoice == "4" && option4 != "")
                     {
                         continue;
                     }
-                    if (PlayerChoice == "5" && option5 != "")
+                    else if (PlayerChoice == "5" && option5 != "")
                     {
                         continue;
                     }
-                    if (PlayerChoice == "6" && option6 != "")
+                    else if (PlayerChoice == "6" && option6 != "")
                     {
                         continue;
                     }
@@ -87,20 +87,19 @@ namespace HelloDungeon
 
             PlayerChoice = "";
             Console.Clear();
-            Console.ReadKey();
             Console.WriteLine("Tales of a Well Traveled Courier");
             Console.ReadLine();
             Console.WriteLine("'What is your name?'");
             Console.Write(">");
 
-            //Name
-            string firstname = Console.ReadLine();
-            string lastname = Console.ReadLine();
-            PlayerName = firstname + lastname;
+            
 
             //First Player Choice
-            while(PlayerChoice != "1" && PlayerChoice != "2"  && PlayerChoice != "3")
-            {
+                //Name
+                string firstname = Console.ReadLine();
+                string lastname = Console.ReadLine();
+                PlayerName = firstname + lastname;
+
                 PlayerChoice = DisplayMenu("'Your name is " + PlayerName + " correct?'", "Yes", "No", "End Game", "", "", "");
                 Console.Clear();
                 if (PlayerChoice == "2")
@@ -131,7 +130,7 @@ namespace HelloDungeon
 
 
 
-            }
+            
         }
         //This Is Scene Number Two
         void DisplaySceneTwo()
@@ -221,7 +220,7 @@ namespace HelloDungeon
                 else if (PlayerChoice == "2")
                 {
                     Console.WriteLine("Goodbye");
-                    GameIsOn = true;
+                    GameOver = true;
                 }
                 CurrentScene = 0;
             }
@@ -302,7 +301,7 @@ namespace HelloDungeon
         public void Run()
         {
             //Game Start
-            while (GameIsOn == false)
+            while (GameOver == false)
             {
                 if (CurrentScene == 0)
                 {
